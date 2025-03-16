@@ -35,6 +35,15 @@ set encoding=utf-8
 syntax on
 set clipboard=unnamed
 
+" Exit Insert mode with 'jj'
+inoremap jj <Esc>
+
+" Exit Visual mode with 'jj'
+vnoremap jj <Esc>
+
+" Exit Command-line mode with 'jj'
+cnoremap jj <Esc>
+
 " Enable Hybrid Line Numbers
 set number          " Show absolute number for the current line
 set relativenumber  " Show relative numbers for all other lines
@@ -46,7 +55,14 @@ augroup HybridNumber
   autocmd InsertLeave * set relativenumber     " Relative numbers in Normal mode
 augroup END
 
-
+" Fix Tab for Python and Autocomplete
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ getline('.')[col('.')-1] =~ '\s' ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"
+"always preselect the first suggestion
+inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "\<Tab>"
 
 " Split window navigation
 nnoremap <C-J> <C-W><C-J>
