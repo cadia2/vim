@@ -22,6 +22,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'windwp/nvim-autopairs'
 
 " All plugins must be added before this line
 call vundle#end()            " Required
@@ -56,14 +57,6 @@ nnoremap <C-H> <C-W><C-H>
 "aesthetic
 let python_highlight_all=1
 syntax on
-
-"Color Sceme
-if has('gui_running')
-  set background=dark
-  colorscheme solarized
-else
-  colorscheme industry
-endif
 
 "===============================
 " Python-Specific Settings
