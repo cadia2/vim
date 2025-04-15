@@ -22,7 +22,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'windwp/nvim-autopairs'
+Plugin 'jiangmiao/auto-pairs'
 
 " All plugins must be added before this line
 call vundle#end()            " Required
@@ -64,12 +64,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"
 "always preselect the first suggestion
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "\<Tab>"
 
-" Split window navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
 "aesthetic
 let python_highlight_all=1
 syntax on
@@ -101,15 +95,30 @@ endif
 " Map <leader>t to open a terminal on the right side
 nnoremap <leader>t :rightbelow vert term<CR>
 
+" Map <leader>r to open command mode and type :w and then !python3 %
+nnoremap <leader>r :w<CR>:!python3 %<CR>
+
+"Toggle NerdTree"
+nnoremap <leader>n :NERDTreeToggle<CR>
+
+"Window management"
+noremap <C-H> <C-W>h
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-L> <C-W>l
+
 "===============================
 " Color Scheme & Appearance
 "===============================
 if has('gui_running')
-  set background=dark
-  colorscheme solarized
+ set background=dark
+ colorscheme solarized
 else
-  colorscheme zenburn
+ colorscheme zenburn
 endif
+
+" switches to using 16 million colors (24-bit RGB)
+"set termguicolors
 
 " If you have the togglebg plugin, map F5 to toggle background colors
 if exists("*togglebg#map")
